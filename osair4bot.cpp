@@ -1,17 +1,17 @@
 /*
  * osbeanair.cpp
  * Author: Jianbing Qu
- * Created: 2015-07-21
+ * Created: 2015-07-21 modified by RG
  */
 #include <Arduino.h> 
 #include <string.h>
-#include "osair.h"
+#include "OSAIR4bot.h"
 
 
-OSAIR::OSAIR(){
+OSAIR4bot::OSAIR4bot(){
 }
 
-void OSAIR::init(){
+void OSAIR4bot::init(){
 	Serial1.begin(115200);
 	m_cmdlen = 0;
 	m_fn = NULL;
@@ -22,7 +22,7 @@ void OSAIR::init(){
 	setMode(0);
 }
 
-void OSAIR::analogRequest(char *pp){
+void OSAIR4bot::analogRequest(char *pp){
  	char spin[3];
   	unsigned char pin = 0;
   	unsigned char val = 0;
@@ -50,7 +50,7 @@ void OSAIR::analogRequest(char *pp){
 }
 
 
-void OSAIR::digitalRequest(char *pp){
+void OSAIR4bot::digitalRequest(char *pp){
   	char spin[3];
   	unsigned char pin = 0;
   	unsigned char val = 0;
@@ -85,7 +85,7 @@ void OSAIR::digitalRequest(char *pp){
   	}      
 }
 
-void OSAIR::doRequest(){
+void OSAIR4bot::doRequest(){
   	char *pp;
   //Serial.print("ReceivedCMD:<");
   //	Serial.print((char*)m_cmdbuf);
@@ -122,8 +122,36 @@ void OSAIR::doRequest(){
   
   	m_cmdlen = 0;
 }
+unsigned char OSAIR4bot::airRead()//modified by RG,config AIR by serial
+{
+		if(m_mode == 1)
+		{
+  		if (Serial1.available()) {
+    			unsigned char c = (unsigned char)(Serial1.read());//modified by RG,retrun  AIR data
+    			Serial.write(c);
+    			return c;
+  		}
+	}
+	return 0x0;
+}
+void OSAIR4bot::airConfig(char *pp)//modified by RG,config AIR by serial
+{
+	int i;
+	int len = strlen(pp);
+	
+			for(i=0;i<len;i++)
+				{
+					if (Serial1.available())
+						 {
+				   		  
+				    		Serial1.write((unsigned char)pp[i]);					    		
+				    		delay(1);//must have this delay,waiting for data transfered 
+				  	}
+				}	
+		
+}		
 
-void OSAIR::loop(){
+void OSAIR4bot::loop(){
   	if(m_mode ==0 && Serial1.available()){
     		unsigned char c = (unsigned char)Serial1.read();
     	//	Serial.print((char)c);
@@ -139,17 +167,13 @@ void OSAIR::loop(){
     		}
   	}
 	else if(m_mode == 1){
-  		if (Serial.available()) {
-	   		unsigned char c = (unsigned char)Serial.read();
-	    		Serial1.write(c);
-	  	}
-  		if (Serial1.available()) {
-    			unsigned char c = (unsigned char)Serial1.read();
-    			Serial.write(c);
-  		}
+  	//	if (Serial1.available()) {
+    //			unsigned char c = (unsigned char)(Serial1.read());//modified by RG,retrun  AIR data
+    //			Serial.write(c);
+  	//	}
 	}
 
-	if(m_controlPin ==18){
+	/*if(m_controlPin ==18){
 		long m_now = millis()/1000;
 		if((m_now-m_lastRead) > 2){
 			int v = analogRead(18);//¶ÁÈ¡A0
@@ -169,10 +193,10 @@ void OSAIR::loop(){
 
 			m_lastRead = m_now;
 		}
-	}
+	}*/
 }
 
-void OSAIR::sendText(char *buf, int len){
+void OSAIR4bot::sendText(char *buf, int len){
 	Serial1.write("@ ");
 	if(len == 0)
 		len = strlen(buf);
@@ -180,7 +204,7 @@ void OSAIR::sendText(char *buf, int len){
 	Serial1.write("\r\n");
 }
 
-void OSAIR::sendCommand(char *cmd, char *param){
+void OSAIR4bot::sendCommand(char *cmd, char *param){
 	if(param == NULL)
 		Serial1.println(cmd);
 	else{
@@ -189,7 +213,7 @@ void OSAIR::sendCommand(char *cmd, char *param){
 		Serial1.println(param);
 	}	
 }
-void OSAIR::publish(char *topic, char *body){
+void OSAIR4bot::publish(char *topic, char *body){
 	Serial1.write("$PUB ");
 	if(body){
 		Serial1.write(topic);
@@ -199,16 +223,16 @@ void OSAIR::publish(char *topic, char *body){
 	else
 		Serial1.println(topic);
 }
-void OSAIR::subscribe(char *topic){
+void OSAIR4bot::subscribe(char *topic){
 	Serial1.write("$SUB ");
 	Serial1.println(topic);
 }
 
 
-void OSAIR::setHandler(void(*fn)(char*)){
+void OSAIR4bot::setHandler(void(*fn)(char*)){
 	m_fn = fn;
 }
-void OSAIR::setMode(unsigned char v_mode){
+void OSAIR4bot::setMode(unsigned char v_mode){
 	m_mode = v_mode;
 	if(m_mode == 1){
 		//sendText("@@EnterCommandMode");
@@ -222,18 +246,18 @@ void OSAIR::setMode(unsigned char v_mode){
 		sendCommand("noecho");
 	}
 }
-void OSAIR::setControlPin(unsigned char v_pin){
+void OSAIR4bot::setControlPin(unsigned char v_pin){
 	if(v_pin > 2){
 		m_controlPin = v_pin;
 		pinMode(m_controlPin, INPUT);
 	}
 }
-void OSAIR::setLoadMode(){
+void OSAIR4bot::setLoadMode(){
 	
 		m_controlPin = 18;
 
 	
 }
-unsigned char OSAIR::getMode(){
+unsigned char OSAIR4bot::getMode(){
 	return m_mode;
 }
