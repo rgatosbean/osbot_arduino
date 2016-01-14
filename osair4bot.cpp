@@ -1,7 +1,7 @@
 /*
  * osbeanair.cpp
- * Author: Jianbing Qu
- * Created: 2015-07-21 modified by RG
+ * Author: RG
+ * Created: 2016-01-14
  */
 #include <Arduino.h> 
 #include <string.h>

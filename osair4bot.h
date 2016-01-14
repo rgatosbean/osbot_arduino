@@ -1,7 +1,7 @@
 /*
  * OSAIR4bot.h
- * Author: Jianbing Qu
- * Created: 2015-07-21
+ * Author: RG
+ * Created: 2016-01-14 
  */
 #define SPDNORM  100     //正常速度，循迹直行
 #define SPDSLOW  60      //较慢速度，循迹转弯
