@@ -1,0 +1,292 @@
+
+body {
+  font-family: "Helvetica Neue","Microsoft Yahei",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  margin:0;
+  padding:0;
+}
+
+
+
+
+#splitter_container{  
+    width: 100%;  
+    height: 88%;  
+    border: 0;  
+    margin-top:49px;  
+    padding: 0px;  
+    overflow: hidden;  
+    }  
+#splitter_left_panel{  
+    width: 360px;  
+    height: 100%;  
+    float: left;  
+ 
+    }  
+#splitter_bar{  
+    width: 5px;  
+    height: 100%;  
+    float: left;  
+    cursor: col-resize;  
+	
+	background: -moz-linear-gradient(left, #999 0, #666 50%, #999 100%);
+	background: -webkit-gradient(linear, left top, right top, from(#999), color-stop(0.5, #666),to(#999));
+	background: -webkit-linear-gradient(left, #999 0, #666 50%, #999 100%);
+	background: -o-linear-gradient(left, #999 0, #666 50%, #999 100%);
+	
+    }  
+	
+ #splitter_right_panel{  
+    height: 100%;  
+    }  
+
+
+.navbar {
+  border:0;
+  background-color: #3399CC;
+  margin-bottom:0;
+}
+
+.navbar-brand {
+  padding: 8px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #fff;
+  background:none;
+}
+
+.navbar-nav{
+padding-left:20px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #ddd;
+}
+
+
+
+#splitter_container:after,#splitter_left_panel:after,#splitter_right_panel:after{
+clear:both;
+}
+
+.kk-tip-div{
+float:left;
+background-color:#555;
+width:110px;
+display:block;
+height:100%;
+margin:0;
+z-index:2;
+
+
+	background: -moz-linear-gradient(top, #555 0, #353535 100%);
+	background: -webkit-gradient(linear, left top, left bottom, from(#555),to(#353535));
+	background: -webkit-linear-gradient(top, #555 0, #353535 100%);
+	background: -o-linear-gradient(top, #555 0, #353535 100%);
+}
+
+.kk-code-div{
+background-color:#333;
+display:block;
+height:100%;
+padding-top:15px;
+color:#ffffff;
+}
+
+.kk-tip-div .glyphicon{
+font-size:14px;
+text-align:center;
+vertical-align:middle;
+color: #ffffff;
+background-color: #999;
+border-radius:50%;
+padding:6px;
+}
+
+.kk-tip-div{
+padding:0px;
+}
+
+.kk-tip-div hr{
+margin:5px;
+padding:0;
+border:0;
+border-bottom:#606060 solid 1px;
+border-top:#393939 solid 1px;
+}
+
+
+
+
+a.kk-block-tip{
+padding:12px;
+display:block;
+text-decoration:none;
+}
+
+a.kk-block-tip:hover{
+cursor:pointer;
+color:#fff;
+background-color:#222;
+}
+
+.kk-tip-div .kk-color-blue{
+color: #ffffff;
+background-color: #5d9cec;
+}
+
+
+.kk-tip-div .kk-color-green{
+color: #ffffff;
+background-color: #27c24c;
+}
+
+.kk-tip-div .kk-color-bean{
+color: #ffffff;
+background-color: #23b7e5;
+}
+
+.kk-tip-div .kk-color-org{
+color: #ffffff;
+background-color: #ff902b;
+}
+
+.kk-tip-div .kk-color-red{
+color: #ffffff;
+background-color: #f05050;
+}
+
+.kk-tip-div .kk-color-grass{
+color: #ffffff;
+background-color: #37bc9b;
+}
+
+.kk-tip-div .kk-color-purple{
+color: #ffffff;
+background-color: #7266ba;
+}
+
+.kk-tip-div .kk-color-pink{
+color: #ffffff;
+background-color: #f532e5;
+}
+
+
+
+.kk-tip-div b{
+font-size:14px;
+color:#ddd;
+font-weight:100;
+margin:5px;
+text-align:center;
+vertical-align:middle;
+}
+
+
+
+.kk-tip-div p{
+padding:8px 0 0 0;
+color:#999;
+font-size:14px;
+text-align:center;
+}
+
+.kk-stage-div{
+background-color:#fff;
+display:block;
+height:100%;
+margin:0;
+padding:5px;
+color:#333;
+overflow:hidden;
+}
+
+
+.kk-float-btn{
+float:right;
+margin-right:0px;
+margin-top:2px;
+z-index:1000;
+overflow:hidden;
+}
+
+.kk-float-btn a{
+border-color:#fff;
+background-color:#eee;
+border-radius:10px;
+padding:8px 9px 8px 8px;
+line-height:0;
+margin:0;
+}
+
+.kk-float-btn a:hover{
+border-color:#fff;
+background-color:#666;
+color:fff;
+}
+
+
+.kk-float-btn .kk-color-blue{
+color: #5d9cec;
+}
+
+
+.kk-float-btn .kk-color-green{
+color: #27c24c;
+}
+
+.kk-float-btn .kk-color-bean{
+color: #23b7e5;
+background-color:;
+}
+
+.kk-float-btn .kk-color-org{
+color: #ff902b;
+}
+
+.kk-float-btn .kk-color-red{
+color: #f05050;
+}
+
+.kk-float-btn .kk-color-grass{
+color:  #37bc9b;
+}
+
+.kk-float-btn .kk-color-purple{
+color:#7266ba;
+}
+
+.kk-float-btn .kk-color-pink{
+color:#f532e5;
+}
+
+.kk-float-btn:after{
+clear:both;
+}
+
+.navbar-inverse .navbar-toggle {
+  border:none;
+}
+
+.navbar-inverse .navbar-toggle a:hover {
+  border-color: #fff;
+  background-color:fff;
+  color:#00CCFF;
+}
+
+.kk-footer{
+background-color:#555;
+color:#fff;
+font-size:16px;
+padding:8px;
+font-weight:100;
+}
+
+.kk-footer .glyphicon{
+font-size:15px;
+color:#FFFF00;
+}

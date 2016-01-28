@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">    
+    <title>OSBot</title>
+    <!-- Bootstrap core CSS -->
+     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/kk.css" rel="stylesheet">
+	 <link href="./css/js-code.css" rel="stylesheet">
+	 
+	 <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
+  
+  <script src="http://dev.osbean.com/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="http://dev.osbean.com/js/bootstrap.min.js"></script>
+    <script src="http://dev.osbean.com/js/mqttws31.js" type="text/javascript"></script>
+    <script src="http://dev.osbean.com/js/osair.js" type="text/javascript"></script>
+    <script>
+var msgcnt = 0;
+
+
+$(document).ready(function(){
+       	OSA.Init('', '00A2E45C', null);
+       	OSA.SetReconnect(true);
+        OSA.on('dev_connect', function(m){
+		$('#devst').html('<font color="green">已连接</font>');
+        }).on('dev_disconnect', function(m){
+		$('#devst').html('<font color="red">未连接</font>');
+
+        }).on('serial', function(str){
+		msgcnt ++;
+
+		$('#msg').text("[" + msgcnt + "] " + str);
+		$('#devst').html('<font color="blue">收到数据</font>');
+        }).on('msg', function(p){
+	});
+
+       	OSA.Connect();
+});
+</script>
+
+	 
+  </head>
+
+<body onLoad="Splitter.init({id: 'splitter_container', isWidthLimit: true});">  
+ 
+		 <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/logo.png" alt="OSBot"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+		    <li><a href="#contact"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 新建</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 打开</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存</a></li>
+          </ul>
+		  
+		  <ul class="nav navbar-nav navbar-right">
+			 <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 设置 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 开发者信息</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> 网络绑定</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> 屏幕设置</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> 声音设置</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 驱动更新</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> 软件升级</a></li>
+              </ul>
+            </li>
+          
+            <li><a href="#contact"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 帮助</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			 <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 中文 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> English</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> 中文简体</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> 中文繁体</a></li>
+              </ul>
+            </li>
+          </ul>
+		  
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	
+    <div id="splitter_container">  
+        <div id="splitter_left_panel">  
+        	<div class="kk-tip-div">
+                <p>积木盒</p> 
+                <hr>
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-random kk-color-blue" aria-hidden="true"></span>
+                    <b>逻辑</b>
+                    
+                </a>
+				<a class="kk-block-tip">
+        <span class="glyphicon glyphicon-knight kk-color-green" aria-hidden="true"></span>
+        <b>控制</b>
+         
+                </a>
+              
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-equalizer kk-color-bean" aria-hidden="true"></span>
+                    <b>变量</b>
+                </a>
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-star-empty kk-color-org" aria-hidden="true"></span>
+                    <b>判断</b>
+                </a>    
+                <hr>
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-dashboard kk-color-red" aria-hidden="true"></span>
+                    <b>传感器</b>
+                </a>
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-record  kk-color-grass" aria-hidden="true"></span>
+                    <b>电机</b>
+                </a>
+				<a class="kk-block-tip">
+                    <span class="glyphicon glyphicon-eye-open  kk-color-pink" aria-hidden="true"></span>
+                    <b>屏幕</b>
+                </a>
+				<a class="kk-block-tip">              
+                    <span class="glyphicon glyphicon-volume-up kk-color-purple" aria-hidden="true"></span>
+                    <b>声音</b>
+                </a>                           
+			</div><!--end of kk-tip-div-->
+			
+			<div class="kk-code-div">
+	     
+			</div>
+
+        </div>  
+		
+		
+        <div id="splitter_bar"></div>  
+        <div id="splitter_right_panel">  
+
+			<div class="kk-stage-div">
+			
+				<div class="btn-group kk-float-btn" role="group" aria-label="...">
+				  <a href="#" type="button" class="btn btn-default kk-color-blue">
+					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				   </a>
+				  <a type="button" class="btn btn-default kk-color-grass">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				  </a>
+				  <a type="button" class="btn btn-default kk-color-org">
+					<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+				  </a>
+				  <a type="button" class="btn btn-default kk-color-red">
+					<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+				  </a>
+				</div>
+				
+			 <!-- Nav tabs -->
+                    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                        <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                          <span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> 图形化</a></li>
+                          <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">
+                          <span class="glyphicon glyphicon-console" aria-hidden="true"></span> 代码</a></li>
+                        </ul>
+                        
+                        <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                            <p>Raw denim you p</p>
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                            
+                            <pre>
+Array.prototype = {};
+function create(name, age) {
+var obj = new Object();
+obj.name = name;
+obj.age = age;
+obj.run = function () {
+return this.name +' '+ this.age;
+};
+return obj;
+}
+var obj1= create('ZXC', 10);    //第一个实例
+var obj2= create('CXZ', 20);    //第二个实例
+alert(obj1.run());
+alert(obj1.run());
+return
+                            </pre>
+                            
+                          </div>
+                        </div><!--end of tab-content-->
+                        
+                     </div><!--end of Nav tabs-->
+     		</div><!--end of kk-stage-div-->
+            
+		  </div><!--end of splitter_right_panel-->
+       
+       
+        </div> <!--end of  splitter_container-->
+	
+	<div class="kk-footer">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		disconnct
+	</div>
+    
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="./js/jq.js"></script>
+	<script src="./js/bootstrap.js"></script>
+	<script src="./js/tc.js"></script>
+	<script src="./js/jscode.js"></script>
+</body>
+</html>
+

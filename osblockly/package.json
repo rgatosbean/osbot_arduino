@@ -1,0 +1,32 @@
+{
+  "name": "BlocklyOSBot",
+  "version": "1.0.0",
+  "description": "Visual programming editors based on Blockly.",
+  "keywords": ["OSBot"],
+  "scripts": {
+    "lint": "jshint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osbean/blocklyosbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/google/blocklyosbot/issues"
+  },
+  "homepage": "http://dev.osbean.com",
+  "author": {
+    "name": "OSBot"
+  },
+  "license": "Apache-2.0",
+  "private": true,
+  "devDependencies": {
+    "jshint": "latest"
+  },
+  "jshintConfig": {
+    "globalstrict": true,
+    "predef": ["Blockly", "goog", "window", "document", "soy", "XMLHttpRequest"],
+    "sub": true,
+    "undef": true,
+    "unused": true
+  }
+}
