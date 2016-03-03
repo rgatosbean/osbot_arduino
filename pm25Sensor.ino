@@ -28,7 +28,7 @@ int cmdcnt=0;//Serial接收到字符计数
 SoftwareSerial mySerial(10, 9); // 软件模拟串口10为RX, 9为TX
 void setup() {
   // put your setup code here, to run once:
-Serial.begin(9600);
+Serial.begin(115200);
 pinMode(ledPower,OUTPUT);
  
 // give the ethernet module time to boot up:
@@ -87,14 +87,14 @@ return;
 float aqi =  calcAQI(ppmpercf);
 DisplayPm25(ppmpercf,aqi,bkpic);
 
-String dataString="";
-dataString+=dtostrf(voltage,9,4,s);
-dataString+=",";
-dataString+=dtostrf(dustdensity*1000,5,2,s);
-dataString+=",";
-dataString+=dtostrf(calcAQI(dustdensity*1000),8,0,s);
+//String dataString="";
+//dataString+=dtostrf(voltage,9,4,s);
+//dataString+=",";
+//dataString+=dtostrf(dustdensity*1000,5,2,s);
+//dataString+=",";
+//dataString+=dtostrf(calcAQI(dustdensity*1000),8,0,s);
 
-Serial.println(dataString);
+Serial.println(ppmpercf);
 delay(1000);
 }
 void DisplayPm25(float val,float aqi,int pic)//显示数值颗粒数、AQI、背景图号
@@ -175,7 +175,7 @@ void DisplayPm25(float val,float aqi,int pic)//显示数值颗粒数、AQI、背
   }
   Serial.println(param[0]);
   Serial.println(param[1]);  
-  Serial.println("read portcfg ok!");
+  Serial.println("read param ok!");
  }
  void GetSerialCMD()//判断上位机串口命令
 {
