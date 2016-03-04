@@ -85,6 +85,8 @@ ppm=0;
 return;
   }
 float aqi =  calcAQI(ppmpercf);
+if(aqi>500)
+aqi=500;
 DisplayPm25(ppmpercf,aqi,bkpic);
 
 //String dataString="";
@@ -134,15 +136,19 @@ void DisplayPm25(float val,float aqi,int pic)//显示数值颗粒数、AQI、背
       bkpic=2;return val*1.42857;
       }else if(50<val&&val<=100)
       {
-        bkpic=3;return val*1.25;
+        bkpic=3;return (val-35)*1.25+50;
         }else if(100<val&&val<=150)
       {
-        bkpic=4;return val*1.25;
-        }else if(150<val&&val<=300){
-          bkpic=5;return val*0.66666667;
-          }else{
-            bkpic=6;return val*0.66666667;
-            }
+        bkpic=4;return (val-75)*1.25+100;
+        }else if(150<val&&val<=200){
+          bkpic=5;return (val-115)*1.428575+150;
+          }else if(200<val&&val<=300){
+              bkpic=5;return (val-150)*1.0+200;
+          }else if(300<val&&val<=400){
+                bkpic=6;return (val-250)*1.0+300;
+            }else {
+                bkpic=7;return (val-350)*0.66666667+400;
+              }
   }
   void wtCfg()//存储配置
 {
