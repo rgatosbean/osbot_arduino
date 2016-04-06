@@ -214,6 +214,12 @@ void DisplayPm25(float val,float aqi,int pic)//显示数值颗粒数、AQI、背
   if(c=='#')
   {    
       cmdcnt=0;    
+      if(readcmd[3]=='#')//读取参数
+      {
+        Serial.println("end");      
+        rdCfg();//读出配置参数信息
+        cmdMode=0;return;        
+        }
       //自定义配置，写入eeprom端口对应关系
           char num[6];
           char * p=readcmd+3;
